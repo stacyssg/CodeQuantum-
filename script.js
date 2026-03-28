@@ -312,7 +312,7 @@ function makeComputerMove() {
   }
 }
 
-/* function chooseComputerColumn() {
+function chooseComputerColumn() {
   const availableColumns = [];
 
   for (let col = 0; col < COLS; col += 1) {
@@ -343,9 +343,9 @@ function makeComputerMove() {
   }
 
   return availableColumns[0] ?? 0;
-}*/
+}
 
-function chooseComputerColumn() {
+/*function chooseComputerColumn() {
   const availableColumns = [];
 
   for (let col = 0; col < COLS; col++) {
@@ -393,7 +393,7 @@ function chooseComputerColumn() {
   }
 
   return bestCol;
-}
+}*/
 
 function toggleAmbient() {
   state.ambientOn = !state.ambientOn;
