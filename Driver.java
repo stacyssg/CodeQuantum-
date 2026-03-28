@@ -3,12 +3,12 @@ import java.util.*;
 public class Driver {
 
 	private String[][] board = new String[7][7];
+	private int[] columnValues = new int[7];
 	
 	public static void main(String[] args) {
 		
 		Scanner scnr = new Scanner(System.in);
 		
-		int[] columnValues = new int[7];
 		int playerChoice;
 		
 		System.out.println("Welcome to Connect 4!");
@@ -28,6 +28,7 @@ public class Driver {
 	}
 	
 	public static boolean isFour() {
+		if(
 		return false;
 	}
 
