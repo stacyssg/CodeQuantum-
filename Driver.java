@@ -19,6 +19,12 @@ public class Driver {
 		board[columnValues[playerChoice]][playerChoice] = "P1";
 		columnValues[playerChoice]++;
 
+		System.out.print("Chose which column to play your piece Player 2 (1-7): ");
+		playerChoice = scnr.nextInt();
+
+		board[columnValues[playerChoice]][playerChoice] = "P2";
+		columnValues[playerChoice]++;
+
 	}
 	
 	public static boolean isFour() {
