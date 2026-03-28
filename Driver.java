@@ -17,16 +17,9 @@ public class Driver {
 		playerChoice = scnr.nextInt();
 
 		board[columnValues[playerChoice]][playerChoice] = "P1";
-		
+		columnValues[playerChoice]++;
 
 	}
-
-    public static String columnVar(int playerChoice){
-        if (playerChoice==0){
-
-        }
-        return "";
-    }
 	
 	public static boolean isFour() {
 		return false;
