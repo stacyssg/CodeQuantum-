@@ -312,7 +312,7 @@ function makeComputerMove() {
   }
 }
 
-function chooseComputerColumn() {
+/* function chooseComputerColumn() {
   const availableColumns = [];
 
   for (let col = 0; col < COLS; col += 1) {
@@ -343,6 +343,56 @@ function chooseComputerColumn() {
   }
 
   return availableColumns[0] ?? 0;
+}*/
+
+function chooseComputerColumn() {
+  const availableColumns = [];
+
+  for (let col = 0; col < COLS; col++) {
+    if (getOpenRow(col, state.board) !== -1) {
+      availableColumns.push(col);
+    }
+  }
+
+  let bestScore = -Infinity;
+  let bestCol = availableColumns[0];
+
+  for (const col of availableColumns) {
+    const tempBoard = cloneBoard(state.board);
+    const row = getOpenRow(col, tempBoard);
+    tempBoard[row][col] = HUMAN_YELLOW;
+
+    // WIN immediately
+    if (evaluateBoard(tempBoard, HUMAN_YELLOW).isWin) {
+      return col;
+    }
+
+    // Check opponent response
+    let worstCaseScore = Infinity;
+
+    for (const oppCol of availableColumns) {
+      const oppBoard = cloneBoard(tempBoard);
+      const oppRow = getOpenRow(oppCol, oppBoard);
+      if (oppRow === -1) continue;
+
+      oppBoard[oppRow][oppCol] = HUMAN_RED;
+
+      if (evaluateBoard(oppBoard, HUMAN_RED).isWin) {
+        worstCaseScore = -100; // BAD move
+        break;
+      }
+
+      const score = scorePosition(oppBoard, HUMAN_YELLOW);
+      worstCaseScore = Math.min(worstCaseScore, score);
+    }
+
+    if (worstCaseScore > bestScore) {
+      bestScore = worstCaseScore;
+      bestCol = col;
+    }
+  }
+
+  return bestCol;
 }
 
 function toggleAmbient() {
